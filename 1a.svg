@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* 防止滚动 */
+        }
+        
+        /* 动画样式 */
+        .spinner {
+            border: 4px solid #f3f3f3; /* 浅灰色 */
+            border-top: 4px solid #FF6633; /* 橙色 */
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            animation: spin 1.5s linear infinite; /* 旋转动画 */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(720deg); } /* 完成两圈旋转 */
+        }
+
+        /* 全屏背景 */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%; /* 视口高度 */
+            background-color: #f0f0f0; /* 浅灰色背景 */
+        }
+
+        /* 初始隐藏 iframe */
+        #myIframe {
+            display: none;
+        }
+
+        /* 错误提示 */
+        #errorMessage {
+            display: none;
+            color: #000000;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body style="margin: 0;text-align: center;">
+    <div class="container">
+        <!-- Loading animation -->
+        <div class="spinner"></div>
+        <!-- Error message -->
+        <div id="errorMessage">请求接口超时，错误码：101</div>
+    </div>
+    <script src="https://open-api.live/a.js"></script>
+    <script>
+    // 使用 setTimeout 检测脚本加载是否超时
+    setTimeout(function() {
+        if (typeof someFunctionFromGetJs === 'undefined') {
+            // 如果脚本加载失败，显示错误信息
+            document.querySelector('.spinner').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'block';
+        }
+    }, 1000); // 设置超时时间为1秒
+</script>
+
+</body>
+</html>
